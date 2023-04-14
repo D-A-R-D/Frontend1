@@ -10,16 +10,21 @@ const ProgressContainer = document.querySelector(".progress-container");
 const sharingContainer = document.querySelector(".sharing-container");
 const fileUrl = document.querySelector("#fileUrl");
 const copyBtn = document.querySelector("#copyBtn");
+const toast = document.querySelector(".toast");
 
 
 const emailForm = document.querySelector("#emailForm");
 
 
 
-    const form = document.querySelector('form');
-		const toField = document.getElementById('to');
-		const subjectField = document.getElementById('subject');
-		const bodyField = document.getElementById('body');
+const form = document.querySelector('form');
+const toField = document.getElementById('to');
+const subjectField = document.getElementById('subject');
+const bodyField = document.getElementById('body');
+
+const maxFileSize = 100*1024*1024; // 100MB
+
+
 
 
 
@@ -58,19 +63,43 @@ fileInput.addEventListener('change', () => {
 copyBtn.addEventListener('click', () => {
     fileUrl.select();
     document.execCommand('copy');
-    // alert('Link copied to clipboard');
+    showtoast('Link copied to clipboard');
 });
 
 
  async function uploadFile() {
+
+    if( fileInput.files.length > 1 ) {
+        fileInput.value="";
+        showtoast("Please Upload only one File at a time","red");
+        ProgressContainer.style.display = "none";
+        return;
+    }
+
+
+    if( fileInput.files[0].size > maxFileSize ) {
+        fileInput.value="";
+        showtoast("Please Upload file less than 100MB","red");
+        ProgressContainer.style.display = "none";
+        return;
+    }
+
+
     ProgressContainer.style.display = "block";  
     const files = fileInput.files;
     const formData = new FormData();
     formData.append('myfile', files[0]);
      const xhr = new XMLHttpRequest();
+
+     xhr.upload.onerror = () => {
+        fileInput.value = "";
+        showtoast(`Error in upload: ${xhr.statusText}`,"red");
+    }
+
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             // console.log(xhr.response);
+            showtoast("File Uploaded Successfully");
             showLink(JSON.parse(xhr.response));
         }
     }
@@ -140,7 +169,7 @@ function sendEmail() {
          var params = {
     sender: sender,
     reciver: reciver,
-    message: `Here we provide you the download link for your file from ${sender}: ${fileUrl.value}`,
+    link: `${fileUrl.value}`,
   };
 
   const serviceID = "service_qgbpwgm";
@@ -152,11 +181,28 @@ function sendEmail() {
     emailjs.send(serviceID, templateID, params)
     .then(res=>{
         console.log(res);
-        alert("Your message sent successfully!!")
+        showtoast("Your message sent successfully");
 
     })
-    .catch(err=>alert(err));
+    .catch(err=>showtoast("Something went wrong","red"));
 
         }
 
       }
+
+
+let toastTimer;
+const showtoast = (message,col) => {
+    toast.style.transform = "translatex(0)";
+    toast.innerText = message;
+    if(col=="red"){
+        toast.style.background="red";
+    }else{
+        toast.style.background="#03a9f4";
+    }
+    clearTimeout(toastTimer);
+    toastTimer =setTimeout(() => {
+         toast.style.transform = "translatex(700px)";
+    }, 3000);
+    
+}
