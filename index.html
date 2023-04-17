@@ -7,7 +7,11 @@
     <title>JoyShare</title>
     <link rel="shortcut icon" type="image" href="./image/logo-bg-min-bg.png" />
     <link rel="stylesheet" href="style.css" />
-
+    <style>
+      body {
+        overflow: hidden;
+      }
+    </style>
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
@@ -65,11 +69,23 @@
           <form id="emailForm">
             <div class="field">
               <label for="sender">Your Email:</label>
-              <input type="email" required name="from-email" id="sender" />
+              <input
+                type="email"
+                class="textb"
+                required
+                name="from-email"
+                id="sender"
+              />
             </div>
             <div class="field">
               <label for="reciver">Reciver's Email:</label>
-              <input type="email" required name="to-email" id="reciver" />
+              <input
+                type="email"
+                class="textb"
+                required
+                name="to-email"
+                id="reciver"
+              />
             </div>
             <button type="submit" onclick="sendEmail()">Send</button>
           </form>
@@ -78,6 +94,16 @@
     </section>
     <div class="upload-bg"></div>
     <div class="toast">This is a toast alert</div>
+    <div class="logo-img">
+      <img
+        src="image/bg-web-logo.png"
+        onclick="location.reload();"
+        style="cursor: pointer"
+        draggable="false"
+        alt="web logo"
+      />
+    </div>
+    <footer>©Joy Share. All right reserved 2023</footer>
   </body>
   <script src="app.js"></script>
   <script src="https://smtpjs.com/v3/smtp.js"></script>

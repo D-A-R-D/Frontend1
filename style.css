@@ -11,6 +11,7 @@ body,html{
     padding: 0;
     margin: 0;
     overflow: hidden;
+    /* position: relative; */
 }
 
 body, .drop-zone, .upload-container{
@@ -221,6 +222,16 @@ p.expire{
     cursor: pointer;
 }
 
+.email-container button:hover{
+    background: #03a9f4;
+    color: white;
+}
+
+.email-container button:active {
+    background: var(--main-bg-color);
+    color: #607d8b;
+}
+
 .toast{
     position: absolute;
     right: 20px;
@@ -235,11 +246,55 @@ p.expire{
     transition: transform .3s ease-in-out;
 }
 
+
+.logo-img img{
+
+    position: absolute;
+        left:0;
+        top:0;
+        padding: 10px 20px;
+        border-radius: 5px;
+        height: 60px;
+        width: 220px;
+        margin: 0;
+        /* display: block; */
+            margin: auto;
+            max-width: 100%;
+            height: auto;
+            outline: none;
+}
+
+
+.logo-img img:active{
+
+    outline: none;
+    background: none;
+
+}
+
+
 .upload-bg{
     background: url(./image/upload.svg) no-repeat center;
     background-size: contain;
     height: 50vh;
     width: 50vw;
+}
+
+footer{
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #1E81CE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+    border-top: 2px solid var(--border-color);
 }
 
 
@@ -261,5 +316,41 @@ p.expire{
             flex-direction: column;
             width: 100%;
 
+        }
+
+        .logo-img img {
+    
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 10px 20px;
+            border-radius: 5px; 
+            height: 40px;
+            width: 100px;
+            margin: 0;
+        }
+
+        .toast {
+            position: absolute;
+            right: 20px;
+            top: 40px;
+            padding: 10px 20px;
+            transform: translatex(700px);
+            border-radius: 5px;
+            background-color: #03a9f4;
+            color: white;
+            box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+            font-size: 18px;
+            transition: transform .3s ease-in-out;
+        }
+
+        .email-container button{
+            background: #03a9f4;
+            color: white;
+        }
+    
+        .email-container button:active {
+            background: var(--main-bg-color);
+            color: #607d8b;
         }
 }
