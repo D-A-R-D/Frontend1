@@ -83,7 +83,7 @@ let textInput1 = document.getElementById("sender");
 
 
 
-const uploadurl = 'https://d8728927-d42c-4f66-bec9-5c2fa2d9abe5.mock.pstmn.io/dard';
+const uploadurl = '';
 
 dropZone.addEventListener('dragover', (e) => {
     e.preventDefault();
