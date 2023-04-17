@@ -28,8 +28,64 @@ const maxFileSize = 100*1024*1024; // 100MB
 
 
 
-const uploadurl = 'https://d8728927-d42c-4f66-bec9-5c2fa2d9abe5.mock.pstmn.io/dard';
 
+window.addEventListener("load", function () {
+          document.body.addEventListener("touchmove", handleTouchMove, {
+            passive: false,
+          });
+        });
+
+        function handleTouchMove(event) {
+          if (event.cancelable) {
+            event.preventDefault();
+          }
+        }
+
+
+
+
+let textInput1 = document.getElementById("sender");
+      let textInput2 = document.getElementById("reciver");
+      let scrollTop = 0;
+
+      textInput1.addEventListener("focus", function () {
+        // store the current scroll position
+        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // set the body to fixed position and adjust the top position
+        document.body.style.position = "relative";
+        document.body.style.top = -scrollTop + "px";
+      });
+
+      textInput2.addEventListener("focus", function () {
+        // store the current scroll position
+        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // set the body to fixed position and adjust the top position
+        document.body.style.position = "relative";
+        document.body.style.top = -scrollTop + "px";
+      });
+
+      textInput1.addEventListener("blur", function () {
+        // restore the original scroll position
+        document.body.style.position = "relative";
+        document.body.style.top = "";
+        window.scrollTo(0, scrollTop);
+      });
+      textInput2.addEventListener("blur", function () {
+        // restore the original scroll position
+        document.body.style.position = "relative";
+        document.body.style.top = "";
+        window.scrollTo(0, scrollTop);
+      });
+
+
+
+
+
+
+
+const uploadurl = 'https://d8728927-d42c-4f66-bec9-5c2fa2d9abe5.mock.pstmn.io/dard';
 
 dropZone.addEventListener('dragover', (e) => {
     e.preventDefault();
@@ -63,6 +119,7 @@ fileInput.addEventListener('change', () => {
 copyBtn.addEventListener('click', () => {
     fileUrl.select();
     document.execCommand('copy');
+    window.getSelection().removeAllRanges();
     showtoast('Link copied to clipboard');
 });
 
