@@ -15,8 +15,6 @@ const toast = document.querySelector(".toast");
 
 const emailForm = document.querySelector("#emailForm");
 
-
-
 const form = document.querySelector('form');
 const toField = document.getElementById('to');
 const subjectField = document.getElementById('subject');
@@ -149,8 +147,10 @@ copyBtn.addEventListener('click', () => {
      const xhr = new XMLHttpRequest();
 
      xhr.upload.onerror = () => {
+        ProgressContainer.style.display = "none";
         fileInput.value = "";
         showtoast(`Error in upload: ${xhr.statusText}`,"red");
+        // location.reload();
     }
 
     xhr.onreadystatechange = () => {
