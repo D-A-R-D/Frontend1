@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JoyShare</title>
+    <link rel="shortcut icon" type="image" href="./image/logo-bg-min-bg.png" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        overflow: hidden;
+      }
+    </style>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("4AoEc1HSAGs-Ar-bN");
+      })();
+    </script>
+  </head>
+  <body>
+    <section class="upload-container">
+      <div class="drop-zone">
+        <div class="icon-container">
+          <img
+            src="image/file.svg"
+            alt="File icon"
+            class="center"
+            draggable="false"
+          />
+          <img
+            src="image/file.svg"
+            alt="File icon"
+            class="left"
+            draggable="false"
+          />
+          <img
+            src="image/file.svg"
+            alt="File icon"
+            class="right"
+            draggable="false"
+          />
+        </div>
+        <input type="file" id="fileInput" />
+        <div class="title">
+          Drop your files here or, <span class="browseBtn">Browse</span>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="bg-progress"></div>
+        <div class="inner-contatiner">
+          <div class="title">Uploading...</div>
+          <div class="percent-container"><span id="percent">0</span>%</div>
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+      <div class="sharing-container">
+        <p class="expire">Link expires in 24 hours!</p>
+        <div class="input-container">
+          <input type="text" id="fileUrl" readonly value="" />
+          <img src="./image/copy.svg" alt="copy image" id="copyBtn" />
+        </div>
+        <p class="expire">Or send via Email</p>
+        <div class="email-container">
+          <form id="emailForm">
+            <div class="field">
+              <label for="sender">Your Email:</label>
+              <input
+                type="email"
+                class="textb"
+                required
+                name="from-email"
+                id="sender"
+              />
+            </div>
+            <div class="field">
+              <label for="reciver">Reciver's Email:</label>
+              <input
+                type="email"
+                class="textb"
+                required
+                name="to-email"
+                id="reciver"
+              />
+            </div>
+            <button type="submit" onclick="sendEmail()">Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <div class="upload-bg"></div>
+    <div class="toast">This is a toast alert</div>
+    <div class="logo-img">
+      <img
+        src="image/bg-web-logo.png"
+        onclick="location.reload();"
+        style="cursor: pointer"
+        draggable="false"
+        alt="web logo"
+      />
+    </div>
+    <footer>©Joy Share. All right reserved 2023</footer>
+  </body>
+  <script src="app.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+</html>
